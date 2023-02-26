@@ -1,5 +1,5 @@
 
-function checkLength(str, number) {
+export function checkLength(str, number) {
   const strLength = str.length;
 
   if (strLength > number) {
@@ -10,7 +10,7 @@ function checkLength(str, number) {
 }
 
 
-function checkPalindrome(str) {
+export function checkPalindrome(str) {
   const Len = str.length;
 
   for (let i = 0; i < Len; i++) {
@@ -27,7 +27,7 @@ function checkPalindrome(str) {
 }
 
 
-function getNumber(text) {
+export function getNumber(text) {
   let numberString = '';
 
   for (let i = 0; i < text.length; i++) {
@@ -44,7 +44,7 @@ function getNumber(text) {
   return result;
 }
 
-function padStartString(string, targetlength, symbols) {
+export function padStartString(string, targetlength, symbols) {
   if (targetlength <= string.length) {
     return string;
   }
