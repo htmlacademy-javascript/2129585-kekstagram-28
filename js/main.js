@@ -1,8 +1,5 @@
-import { fotoMetaList } from './data.js';
-import './util.js';
+import { createPictures } from './picture.js';
+import { createPhotoMetaList } from './data.js';
 
-
-// eslint-disable-next-line no-console
-console.log(
-  fotoMetaList()
-);
+const photoMetaList = createPhotoMetaList();
+createPictures(photoMetaList);
