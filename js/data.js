@@ -21,7 +21,7 @@ const createComments = (comIdGenerator) => ({
 
 const getComments = (count, generator) => Array.from({ length: count }, () => createComments(generator));
 
-const createFotoMeta = () => {
+const createPhotoMeta = () => {
   const id = idGenerator();
   const likes = likeCountGenerator();
   const commentsCount = getRandomInteger(0, MAX_COMMENTS_COUNT);
@@ -36,9 +36,6 @@ const createFotoMeta = () => {
   });
 };
 
-const fotoMetaList = () => Array.from({ length: FOTOS_COUNT }, createFotoMeta);
+const createPhotoMetaList = () => Array.from({ length: FOTOS_COUNT }, createPhotoMeta);
 
-// eslint-disable-next-line no-console
-console.log(JSON.stringify(fotoMetaList, null, 4));
-
-export { fotoMetaList };
+export { createPhotoMetaList };
