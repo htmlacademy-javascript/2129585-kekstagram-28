@@ -15,7 +15,7 @@ const likeCountGenerator = createRandomIdFromRangeGenerator(MIN_LIKES, MAX_LIKES
 const createComments = (comIdGenerator) => ({
   id: comIdGenerator(),
   avatar: `img/avatar-${getRandomInteger(1, AVATARS_COUNT)}.svg`,
-  comments: getRandomArrayElement(COMMENTS),
+  comment: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES),
 });
 

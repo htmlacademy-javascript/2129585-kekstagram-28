@@ -2,7 +2,7 @@ function createPictures(photoMetaList) {
   const fotoTemplate = document.getElementById('picture').content;
 
   const createdPhotoList = photoMetaList.map((item) => {
-    const { url, description, likes, comments } = item;
+    const { url, description, likes, comments, id } = item;
     const pictureHtml = fotoTemplate.cloneNode(true);
 
     pictureHtml.querySelector('.picture__img').src = url;
@@ -10,6 +10,8 @@ function createPictures(photoMetaList) {
 
     pictureHtml.querySelector('.picture__likes').textContent = likes;
     pictureHtml.querySelector('.picture__comments').textContent = comments.length;
+
+    pictureHtml.querySelector('.picture').dataset.id = id;
 
     return pictureHtml;
   });
