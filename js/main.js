@@ -1,5 +1,7 @@
-import { createPictures } from './picture.js';
+import { renderGallery } from './gallery-photos.js';
 import { createPhotoMetaList } from './data.js';
 
 const photoMetaList = createPhotoMetaList();
-createPictures(photoMetaList);
+renderGallery(photoMetaList);
+
+
