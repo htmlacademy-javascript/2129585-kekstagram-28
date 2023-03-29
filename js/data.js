@@ -2,7 +2,7 @@ import { getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteg
 
 const FOTOS_COUNT = 25;
 const AVATARS_COUNT = 6;
-const MAX_COMMENTS_COUNT = 5;
+const MAX_COMMENTS_COUNT = 25;
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 const NAMES = ['Валера', 'Сергей', 'Виктор', 'Василий', 'Владимир', 'Виктор', 'Александр', 'Максим', 'Ирина', 'Ольга', 'Валерия', 'Сергей', 'Дарья', 'Дмитрий', 'Никита', 'Рустам', 'Тимур', 'Татьяна', 'Соня', 'Тамара', 'Ольга', 'Полина', 'София', 'Артур', 'Руфина'];
