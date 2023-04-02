@@ -10,6 +10,9 @@ export function renderGallery(pictureData) {
 
 function handlePictureClick(event, items) {
   const node = event.target.closest('[data-id]');
+  if (!node) {
+    return;
+  }
 
   const id = Number(node.dataset.id);
   const data = items.find((item) => item.id === id);
