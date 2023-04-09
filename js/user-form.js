@@ -1,4 +1,8 @@
 import { isEscapeKey } from './util.js';
+import { sendData } from './api-load.js';
+import { resetEffects } from './style-effect.js';
+import { showSuccesMessage, showErrorMessage } from './message.js';
+
 const buttonUpload = document.getElementById('upload-file');
 const imgUpload = document.querySelector('.img-upload__overlay');
 const buttonCancel = document.querySelector('.img-upload__cancel');
@@ -16,7 +20,6 @@ const pristine = new Pristine(form, {
 });
 
 buttonUpload.addEventListener('change', openModal);
-
 buttonCancel.addEventListener('click', closeModal);
 
 // если фокус на поле ввода комментария
@@ -41,9 +44,24 @@ function closeModal() {
   document.body.classList.remove('modal-open');
 }
 
-form.addEventListener('submit', (evt) => {
+form.addEventListener('submit', async (evt) => {
   evt.preventDefault();
-  pristine.validate();
+
+  const isValid = pristine.validate();
+  if (!isValid) {
+    return;
+  }
+
+  try {
+    await sendData((new FormData(form)));
+
+    showSuccesMessage();
+    form.reset();
+    resetEffects();
+    closeModal();
+  } catch (e) {
+    showErrorMessage(e.message);
+  }
 });
 
 // Валидатор для поля с хештегом
