@@ -1,11 +1,18 @@
 import { renderGallery } from './gallery-photos.js';
-import { createPhotoMetaList } from './data.js';
 import './user-form.js';
 import { changeScale } from './modify-picture.js';
 import { resetEffects } from './style-effect.js';
-const photoMetaList = createPhotoMetaList();
+import { getData } from './api-load.js';
+import { showAlert } from './util.js';
 
-renderGallery(photoMetaList);
+
 changeScale();
 resetEffects();
 
+try {
+  const data = await getData();
+  renderGallery(data);
+
+} catch (err) {
+  showAlert(err.message);
+}

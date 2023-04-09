@@ -43,7 +43,7 @@ function createComment(comment) {
 
   const commentText = document.createElement('p');
   commentText.classList.add('social__text');
-  commentText.textContent = comment.comment;
+  commentText.textContent = comment.message;
 
   commentBlock.appendChild(commentImg);
   commentBlock.appendChild(commentText);
