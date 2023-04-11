@@ -2,10 +2,10 @@ const controlSmaller = document.querySelector('.scale__control--smaller');
 const controlBigger = document.querySelector('.scale__control--bigger');
 const controlValue = document.querySelector('.scale__control--value');
 const image = document.querySelector('.img-upload__preview img');
-const stepValue = 25;
-const minValue = 25;
-const maxValue = 100;
-const defaultValue = 100;
+const STEP_VALUE = 25;
+const MIN_VALUE = 25;
+const MAX_VALUE = 100;
+const DEFAULT_VALUE = 100;
 
 const scaleImage = (value) => {
   image.style.transform = `scale(${value / 100})`;
@@ -14,23 +14,23 @@ const scaleImage = (value) => {
 
 const smallButtonClick = () => {
   const currentvalue = parseInt(controlValue.value, 10);
-  let newValue = currentvalue - stepValue;
-  if (newValue < minValue) {
-    newValue = minValue;
+  let newValue = currentvalue - STEP_VALUE;
+  if (newValue < MIN_VALUE) {
+    newValue = MIN_VALUE;
   }
   scaleImage(newValue);
 };
 
 const bigButtonClick = () => {
   const currentvalue = parseInt(controlValue.value, 10);
-  let newValue = currentvalue + stepValue;
-  if (newValue > maxValue) {
-    newValue = maxValue;
+  let newValue = currentvalue + STEP_VALUE;
+  if (newValue > MAX_VALUE) {
+    newValue = MAX_VALUE;
   }
   scaleImage(newValue);
 };
 
-const changeScale = () => scaleImage(defaultValue);
+const changeScale = () => scaleImage(DEFAULT_VALUE);
 
 controlSmaller.addEventListener('click', smallButtonClick);
 controlBigger.addEventListener('click', bigButtonClick);
