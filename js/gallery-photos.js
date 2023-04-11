@@ -2,9 +2,11 @@ import { createPictures } from './picture.js';
 import { openBigPicture } from './big-picture.js';
 
 export function renderGallery(pictureData) {
+  const container = document.querySelector('.pictures');
+  document.querySelectorAll('.picture').forEach((el) => el.remove());
+
   createPictures(pictureData);
 
-  const container = document.querySelector('.pictures');
   container.addEventListener('click', (e) => handlePictureClick(e, pictureData));
 }
 

@@ -7,7 +7,6 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-
 function createRandomIdFromRangeGenerator(min, max) {
   const previousValues = [];
 
@@ -45,8 +44,25 @@ const showAlert = (message) => {
   }, alertTime);
 };
 
+function debounce(callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteger, isEscapeKey, showAlert };
+export {
+  getRandomArrayElement,
+  createRandomIdFromRangeGenerator,
+  getRandomInteger,
+  isEscapeKey,
+  showAlert,
+  debounce,
+};
