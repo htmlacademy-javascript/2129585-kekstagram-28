@@ -4,7 +4,8 @@ import { resetEffects } from './style-effect.js';
 import { showSuccesMessage, showErrorMessage } from './message.js';
 
 const buttonUpload = document.getElementById('upload-file');
-const imgUpload = document.querySelector('.img-upload__overlay');
+const imgUploadOverlay = document.querySelector('.img-upload__overlay');
+const imgUpload = imgUploadOverlay.querySelector('img');
 const buttonCancel = document.querySelector('.img-upload__cancel');
 const form = document.querySelector('.img-upload__form');
 const hashTagField = document.querySelector('.text__hashtags');
@@ -33,14 +34,31 @@ document.addEventListener('keydown', (evt) => {
   }
 });
 
-function openModal() {
-  imgUpload.classList.remove('hidden');
-  document.body.classList.add('modal-open');
+function openModal(evt) {
+  onFileSelected(evt, () => {
+    imgUploadOverlay.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+  });
+}
+
+function onFileSelected(event, callback) {
+  const selectedFile = event.target.files[0];
+  const reader = new FileReader();
+
+  imgUpload.title = selectedFile.name;
+
+  reader.onload = function (evt) {
+    imgUpload.src = evt.target.result;
+
+    callback();
+  };
+
+  reader.readAsDataURL(selectedFile);
 }
 
 function closeModal() {
   form.reset();
-  imgUpload.classList.add('hidden');
+  imgUploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
 }
 
