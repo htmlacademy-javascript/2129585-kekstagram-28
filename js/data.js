@@ -12,16 +12,20 @@ const DESCRIPTIONS = ['На чили', 'Отдыхаем', 'Классное н�
 const idGenerator = createRandomIdFromRangeGenerator(1, FOTOS_COUNT);
 const likeCountGenerator = createRandomIdFromRangeGenerator(MIN_LIKES, MAX_LIKES);
 
-const createComments = (comIdGenerator) => ({
-  id: comIdGenerator(),
-  avatar: `img/avatar-${getRandomInteger(1, AVATARS_COUNT)}.svg`,
-  comment: getRandomArrayElement(COMMENTS),
-  name: getRandomArrayElement(NAMES),
-});
+function createComments(comIdGenerator) {
+  return ({
+    id: comIdGenerator(),
+    avatar: `img/avatar-${getRandomInteger(1, AVATARS_COUNT)}.svg`,
+    comment: getRandomArrayElement(COMMENTS),
+    name: getRandomArrayElement(NAMES),
+  });
+}
 
-const getComments = (count, generator) => Array.from({ length: count }, () => createComments(generator));
+function getComments(count, generator) {
+  return Array.from({ length: count }, () => createComments(generator));
+}
 
-const createPhotoMeta = () => {
+function createPhotoMeta() {
   const id = idGenerator();
   const likes = likeCountGenerator();
   const commentsCount = getRandomInteger(0, MAX_COMMENTS_COUNT);
@@ -34,8 +38,10 @@ const createPhotoMeta = () => {
     likes,
     comments: getComments(commentsCount, commentIdGenerator)
   });
-};
+}
 
-const createPhotoMetaList = () => Array.from({ length: FOTOS_COUNT }, createPhotoMeta);
+function createPhotoMetaList() {
+  return Array.from({ length: FOTOS_COUNT }, createPhotoMeta);
+}
 
 export { createPhotoMetaList };

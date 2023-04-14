@@ -1,9 +1,9 @@
 function createPictures(photoMetaList) {
-  const fotoTemplate = document.getElementById('picture').content;
+  const photoTemplate = document.getElementById('picture').content;
 
   const createdPhotoList = photoMetaList.map((item) => {
     const { url, description, likes, comments, id } = item;
-    const pictureHtml = fotoTemplate.cloneNode(true);
+    const pictureHtml = photoTemplate.cloneNode(true);
 
     pictureHtml.querySelector('.picture__img').src = url;
     pictureHtml.querySelector('.picture__img').alt = description;

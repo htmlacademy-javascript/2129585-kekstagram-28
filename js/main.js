@@ -6,7 +6,6 @@ import { getData } from './api-load.js';
 import { showAlert, debounce } from './util.js';
 import { init } from './filter.js';
 
-
 try {
   changeScale();
   resetEffects();
