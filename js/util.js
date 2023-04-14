@@ -1,31 +1,35 @@
 const alertTime = 5000;
 
-const getRandomInteger = (a, b) => {
+function getRandomInteger(a, b) {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   const result = Math.random() * (upper - lower + 1) + lower;
+
   return Math.floor(result);
-};
+}
 
 function createRandomIdFromRangeGenerator(min, max) {
   const previousValues = [];
 
   return function () {
     let currentValue = getRandomInteger(min, max);
+
     if (previousValues.length >= (max - min + 1)) {
       // eslint-disable-next-line no-console
       console.error(`Перебраны все числа из диапазона от  ${min} до  ${max}`);
       return null;
     }
+
     while (previousValues.includes(currentValue)) {
       currentValue = getRandomInteger(min, max);
     }
+
     previousValues.push(currentValue);
     return currentValue;
   };
 }
 
-const showAlert = (message) => {
+function showAlert(message) {
   const alert = document.createElement('div');
   alert.style.position = 'absolute';
   alert.style.zIndex = '100';
@@ -42,7 +46,7 @@ const showAlert = (message) => {
   setTimeout(() => {
     alert.remove();
   }, alertTime);
-};
+}
 
 function debounce(callback, timeoutDelay = 500) {
   let timeoutId;
@@ -54,9 +58,13 @@ function debounce(callback, timeoutDelay = 500) {
   };
 }
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+function getRandomArrayElement(elements) {
+  return elements[getRandomInteger(0, elements.length - 1)];
+}
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
+function isEscapeKey(evt) {
+  return evt.key === 'Escape';
+}
 
 export {
   getRandomArrayElement,

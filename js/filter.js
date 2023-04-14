@@ -9,11 +9,15 @@ const filterElement = document.querySelector('.img-filters');
 let currentFilter = Filter.DEFAULT;
 let pictures = [];
 
-const sortRandomly = () => Math.random() - 0.5;
+function sortRandomly() {
+  return Math.random() - 0.5;
+}
 
-const sortByComments = (pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length;
+function sortByComments(pictureA, pictureB) {
+  return pictureB.comments.length - pictureA.comments.length;
+}
 
-const getFilterPictures = () => {
+function getFilterPictures() {
   switch (currentFilter) {
     case Filter.RANDOM:
       return [...pictures].sort(sortRandomly).slice(0, PICTURES_COUNT);
@@ -22,10 +26,9 @@ const getFilterPictures = () => {
     default:
       return [...pictures];
   }
+}
 
-};
-
-const setOnFilterClick = (callback) => {
+function setOnFilterClick(callback) {
   callback(getFilterPictures());
 
   filterElement.addEventListener('click', (evt) => {
@@ -46,14 +49,14 @@ const setOnFilterClick = (callback) => {
     currentFilter = clickButton.id;
     callback(getFilterPictures());
   });
-};
+}
 
 
-const init = (loadedPictures, callback) => {
+function init(loadedPictures, callback) {
   filterElement.classList.remove('img-filters--inactive');
   pictures = [...loadedPictures];
   setOnFilterClick(callback);
-};
+}
 
 
 export { init };

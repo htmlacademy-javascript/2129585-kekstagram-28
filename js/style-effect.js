@@ -59,9 +59,11 @@ const sliderElement = document.querySelector('.effect-level__slider');
 const sliderContainerElement = document.querySelector('.img-upload__effect-level');
 const effectLevelElement = document.querySelector('.effect-level__value');
 
-const checkIfDefault = () => choosenEffect === defaultEffectSlider;
+function checkIfDefault() {
+  return choosenEffect === defaultEffectSlider;
+}
 
-const updateSlider = () => {
+function updateSlider() {
   sliderElement.noUiSlider.updateOptions({
     range: {
       min: choosenEffect.min,
@@ -78,7 +80,7 @@ const updateSlider = () => {
   } else {
     sliderContainerElement.classList.remove('hidden');
   }
-};
+}
 
 effectList.addEventListener('mousedown', (e) => {
   const effectItem = e.target.closest('.effects__item');
@@ -100,18 +102,18 @@ effectList.addEventListener('mousedown', (e) => {
   updateSlider();
 });
 
-const onSliderUpdate = () => {
+function onSliderUpdate() {
   const sliderValue = sliderElement.noUiSlider.get();
   previewImage.style.filter = checkIfDefault()
     ? defaultEffectSlider.style
     : `${choosenEffect.style}(${sliderValue}${choosenEffect.unit})`;
   effectLevelElement.value = sliderValue;
-};
+}
 
-const resetEffects = () => {
+function resetEffects() {
   choosenEffect = defaultEffectSlider;
   updateSlider();
-};
+}
 
 noUiSlider.create(sliderElement, {
   range: {

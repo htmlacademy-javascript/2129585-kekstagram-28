@@ -11,7 +11,7 @@ const form = document.querySelector('.img-upload__form');
 const hashTagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 const maxLengthHashtag = 5;
-const symbolHashtag = /^#[a-za-яё0-9]{1,19}$/i;
+const symbolHashtag = /^#\w{1,19}$/i;
 const hashtagError = 'неправильно заполнены хештэги';
 
 const pristine = new Pristine(form, {
@@ -24,10 +24,10 @@ buttonUpload.addEventListener('change', openModal);
 buttonCancel.addEventListener('click', closeModal);
 
 // если фокус на поле ввода комментария
-const isFocusField = () =>
-  document.activeElement === hashTagField ||
-  document.activeElement === commentField;
-
+function isFocusField() {
+  return document.activeElement === hashTagField ||
+    document.activeElement === commentField;
+}
 document.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt) && !isFocusField()) {
     closeModal();
@@ -83,23 +83,27 @@ form.addEventListener('submit', async (evt) => {
 });
 
 // Валидатор для поля с хештегом
-const isValidTag = (tag) => symbolHashtag.test(tag);
+function isValidTag(tag) {
+  return symbolHashtag.test(tag);
+}
 
-const hasValidCount = (tags) => tags.length <= maxLengthHashtag;
+function hasValidCount(tags) {
+  return tags.length <= maxLengthHashtag;
+}
 
-const hasUniqueTags = (tags) => {
+function hasUniqueTags(tags) {
   const lowerCaseTags = tags.map((tag) => tag.toLowerCase());
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
-};
+}
 
-const validateHastags = (value) => {
+function validateHastags(value) {
   const tags = value
     .trim()
     .split('')
     .filter((tag) => tag.trim().length);
 
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
-};
+}
 
 pristine.addValidator(
   hashTagField,

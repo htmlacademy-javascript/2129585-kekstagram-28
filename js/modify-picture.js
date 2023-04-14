@@ -7,33 +7,38 @@ const MIN_VALUE = 25;
 const MAX_VALUE = 100;
 const DEFAULT_VALUE = 100;
 
-const scaleImage = (value) => {
+function scaleImage(value) {
   image.style.transform = `scale(${value / 100})`;
   controlValue.value = `${value}%`;
-};
+}
 
-const smallButtonClick = () => {
+function smallButtonClick() {
   const currentvalue = parseInt(controlValue.value, 10);
   let newValue = currentvalue - STEP_VALUE;
+
   if (newValue < MIN_VALUE) {
     newValue = MIN_VALUE;
   }
-  scaleImage(newValue);
-};
 
-const bigButtonClick = () => {
+  scaleImage(newValue);
+}
+
+function bigButtonClick() {
   const currentvalue = parseInt(controlValue.value, 10);
+
   let newValue = currentvalue + STEP_VALUE;
   if (newValue > MAX_VALUE) {
     newValue = MAX_VALUE;
   }
-  scaleImage(newValue);
-};
 
-const changeScale = () => scaleImage(DEFAULT_VALUE);
+  scaleImage(newValue);
+}
+
+function changeScale() {
+  scaleImage(DEFAULT_VALUE);
+}
 
 controlSmaller.addEventListener('click', smallButtonClick);
 controlBigger.addEventListener('click', bigButtonClick);
-
 
 export { changeScale };
