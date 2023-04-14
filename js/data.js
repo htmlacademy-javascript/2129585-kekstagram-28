@@ -41,7 +41,7 @@ function createPhotoMeta() {
 }
 
 function createPhotoMetaList() {
-  return Array.from({ length: FOTOS_COUNT }, createPhotoMeta)
+  return Array.from({ length: FOTOS_COUNT }, createPhotoMeta);
 }
 
 export { createPhotoMetaList };
